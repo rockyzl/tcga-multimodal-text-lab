@@ -1,0 +1,26 @@
+{
+  "frozen_at": "2026-11-18T22:29:17.784263+00:00",
+  "git_commit": "5fd4d4ac8b42266a6efb59afc5c6f65e45c86f55",
+  "hashes": {
+    "protocol.json": "df04a53d4aed64c091c1f60267123b1dd45e97fcb4ed65aacbfb09e9879f5774",
+    "pyproject.toml": "c15702a589ad1c8e18bcf7c5f1990c7bfc120e4c07e240c0e001cd060e8f0528",
+    "uv.lock": "cd5f533c952740621e54b665c1efbffdf5b35f8a296bf4b007d677374d173c1e",
+    "src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/data.py": "206fa2905f6224ba7380367eea502f1e3bc52b6c8d0e65e7e2765a1d3735f39f",
+    "src/text.py": "6370d40b5b96658e66c24ab70d6e62c8426ba63533ffc8ce98051817e6233c5b",
+    "src/features.py": "ba60b9285bea1fa0d107d93a9655bfe998b6842c98d287478b8d388ea18d2348",
+    "src/models.py": "f9c7bc17f180aeff086b284e281e401eeb18ac8b00f21d69fb2135eaa3d3c44b",
+    "src/run.py": "97b50709d0c274c28e9795fd35ef226c0f5c4ed0e0adc3b8334fe60ac058a26d",
+    "data/manifest.json": "5e166b33e68b0173495a0ec427a4da52ece96b7ea842c2b2e352e8dc645fa96d",
+    "data/membership.json": "2c37bc6acba2945590980eefb00a58071dff4c9697746835b9da32477d0be115",
+    "data/embeddings/report_embeddings.npy": "555bcb8601cad82586da85858b0dccda301a98dbd0ca989d6f55b9951b9c70c8",
+    "data/derived/clinical.csv": "ea666f11f79b48967db7b7e57d5c49e04fe72fee422867464715295bbb104944",
+    "data/derived/reports.csv": "2555a12a1502ee8b453de48ba132cc42524fecdf593e196013e685ffad805bf6",
+    "data/derived/rna.npy": "edba7535d761c81079d9260df3f4ff590ed0c70e5b65354d56236002786a0673",
+    "data/derived/dev_labels.csv": "657d0ad31dfed47fd0d4ad818ff7f6a0ff69b42cbe284377c7c05ec3a1bab51a",
+    "data/derived/test_labels.csv": "76dbcc54190b10e0167a5dceaf00401564a78507b8202db3abe70cd97421aac4",
+    "data/derived/leakage_flags.csv": "c650b8d8086e91bb35f064c0ba71e49833e9803cffc29baeb5c6bff0031a8f97"
+  },
+  "dev_cv_sha256": "e6fed7c2b1a02feb26061c8d1890981f275d26ee1a761e22f291178677e8bf32",
+  "statement": "Models, features, metrics, contrasts and decision rule are fixed in protocol.json at this commit. The test split is evaluated once after this file is committed."
+}
