@@ -1,0 +1,1442 @@
+{
+  "phase": "single held-out test evaluation",
+  "created_at": "2026-11-18T22:29:40.759189+00:00",
+  "freeze_commit": "5fd4d4ac8b42266a6efb59afc5c6f65e45c86f55",
+  "n_dev": 763,
+  "n_test": 255,
+  "preprocessing": {
+    "rna_pca_explained_variance": 0.4743959903717041,
+    "text_pca_explained_variance": 0.7567950487136841
+  },
+  "endpoints": {
+    "PFI": {
+      "test_events": 35,
+      "families": {
+        "cox": {
+          "models": {
+            "clinical": {
+              "c_index": 0.736097794822627,
+              "ci95": [
+                0.632882143375781,
+                0.8340426538959175
+              ],
+              "uno_c_tau1826": 0.6582255892823574
+            },
+            "clinical_rna": {
+              "c_index": 0.7327420901246404,
+              "ci95": [
+                0.6304754475087673,
+                0.8184785483090956
+              ],
+              "uno_c_tau1826": 0.6355371584826075
+            },
+            "clinical_text": {
+              "c_index": 0.7260306807286673,
+              "ci95": [
+                0.6321100814068629,
+                0.8069654472170105
+              ],
+              "uno_c_tau1826": 0.657073087987572
+            },
+            "text": {
+              "c_index": 0.6013902205177373,
+              "ci95": [
+                0.4987132685868397,
+                0.6994718249983117
+              ],
+              "uno_c_tau1826": 0.564585633073814
+            },
+            "clinical_rna_text": {
+              "c_index": 0.7329817833173538,
+              "ci95": [
+                0.6478837676204359,
+                0.8065929243232678
+              ],
+              "uno_c_tau1826": 0.6451992405700514
+            },
+            "rna": {
+              "c_index": 0.612895493767977,
+              "ci95": [
+                0.5090238575740774,
+                0.7050945271923005
+              ],
+              "uno_c_tau1826": 0.5410605156032884
+            }
+          },
+          "contrasts": {
+            "clinical_rna - clinical": {
+              "estimate": -0.003355704697986628,
+              "ci95": [
+                -0.0830802081125477,
+                0.07387637589897393
+              ],
+              "fraction_boot_gt_0": 0.476
+            },
+            "clinical_text - clinical": {
+              "estimate": -0.010067114093959773,
+              "ci95": [
+                -0.0776365599915941,
+                0.06534644880865918
+              ],
+              "fraction_boot_gt_0": 0.3795
+            },
+            "text - clinical": {
+              "estimate": -0.13470757430488978,
+              "ci95": [
+                -0.2822031621492366,
+                0.012820199895048106
+              ],
+              "fraction_boot_gt_0": 0.036
+            },
+            "clinical_rna_text - clinical": {
+              "estimate": -0.0031160115052732973,
+              "ci95": [
+                -0.08426230066292673,
+                0.087272578303143
+              ],
+              "fraction_boot_gt_0": 0.47
+            },
+            "rna - clinical": {
+              "estimate": -0.12320230105465002,
+              "ci95": [
+                -0.2559255702783418,
+                0.008058947225613972
+              ],
+              "fraction_boot_gt_0": 0.036
+            },
+            "clinical_rna_text - clinical_rna": {
+              "estimate": 0.00023969319271333056,
+              "ci95": [
+                -0.040288912628347,
+                0.04207055085776231
+              ],
+              "fraction_boot_gt_0": 0.5115
+            }
+          },
+          "bootstrap": {
+            "replicates": 2000,
+            "seed": 2026,
+            "comparable_pairs": 4172
+          },
+          "sensitivity_excluding_flagged_reports": {
+            "n": 214,
+            "events": 31,
+            "models": {
+              "clinical": {
+                "c_index": 0.708075495049505,
+                "ci95": [
+                  0.5827548964437436,
+                  0.8152115482769362
+                ]
+              },
+              "clinical_rna": {
+                "c_index": 0.7141089108910891,
+                "ci95": [
+                  0.6016232779920683,
+                  0.8096229637638649
+                ]
+              },
+              "clinical_text": {
+                "c_index": 0.7042079207920792,
+                "ci95": [
+                  0.6098534809065925,
+                  0.7899061930716251
+                ]
+              },
+              "text": {
+                "c_index": 0.5788985148514851,
+                "ci95": [
+                  0.47107697519867536,
+                  0.6836807770657056
+                ]
+              },
+              "clinical_rna_text": {
+                "c_index": 0.7199876237623762,
+                "ci95": [
+                  0.6332703767072088,
+                  0.8057153675592261
+                ]
+              },
+              "rna": {
+                "c_index": 0.6027227722772277,
+                "ci95": [
+                  0.4801292286133885,
+                  0.7012136997323264
+                ]
+              }
+            },
+            "contrasts": {
+              "clinical_rna - clinical": {
+                "estimate": 0.006033415841584122,
+                "ci95": [
+                  -0.08652855030796565,
+                  0.09582281160240069
+                ],
+                "fraction_boot_gt_0": 0.557
+              },
+              "clinical_text - clinical": {
+                "estimate": -0.0038675742574257876,
+                "ci95": [
+                  -0.07809120385544736,
+                  0.08210142233885927
+                ],
+                "fraction_boot_gt_0": 0.451
+              },
+              "text - clinical": {
+                "estimate": -0.12917698019801982,
+                "ci95": [
+                  -0.2883618799390032,
+                  0.0445074696545285
+                ],
+                "fraction_boot_gt_0": 0.068
+              },
+              "clinical_rna_text - clinical": {
+                "estimate": 0.011912128712871284,
+                "ci95": [
+                  -0.07885685754773528,
+                  0.11735430787589497
+                ],
+                "fraction_boot_gt_0": 0.5915
+              },
+              "rna - clinical": {
+                "estimate": -0.10535272277227725,
+                "ci95": [
+                  -0.2595861016233698,
+                  0.04024701761752223
+                ],
+                "fraction_boot_gt_0": 0.0905
+              },
+              "clinical_rna_text - clinical_rna": {
+                "estimate": 0.005878712871287162,
+                "ci95": [
+                  -0.04143989121582685,
+                  0.05729109485160144
+                ],
+                "fraction_boot_gt_0": 0.608
+              }
+            }
+          }
+        },
+        "nn": {
+          "models": {
+            "clinical": {
+              "c_index": 0.6338926174496644,
+              "ci95": [
+                0.5734629906091964,
+                0.6914134406598392
+              ],
+              "uno_c_tau1826": 0.5938283231263217,
+              "c_index_per_seed": [
+                0.5994726749760306,
+                0.6064237775647172,
+                0.7564717162032598,
+                0.7202780441035475,
+                0.48681687440076704
+              ]
+            },
+            "clinical_rna": {
+              "c_index": 0.6439597315436243,
+              "ci95": [
+                0.5626122460632484,
+                0.7202486609579908
+              ],
+              "uno_c_tau1826": 0.6186970286599097,
+              "c_index_per_seed": [
+                0.4865771812080537,
+                0.7339405560882071,
+                0.6514860977948226,
+                0.725071907957814,
+                0.6227229146692234
+              ]
+            },
+            "clinical_text": {
+              "c_index": 0.7071428571428571,
+              "ci95": [
+                0.6303427473499474,
+                0.7748400149423974
+              ],
+              "uno_c_tau1826": 0.6665276845824579,
+              "c_index_per_seed": [
+                0.7195589645254075,
+                0.7504793863854267,
+                0.6435762224352828,
+                0.7384947267497604,
+                0.6836049856184084
+              ]
+            },
+            "text": {
+              "c_index": 0.6218120805369127,
+              "ci95": [
+                0.5194462173889608,
+                0.7147356050938826
+              ],
+              "uno_c_tau1826": 0.5741042848464633,
+              "c_index_per_seed": [
+                0.6040268456375839,
+                0.636385426653883,
+                0.6061840843720039,
+                0.6313518696069031,
+                0.6311121764141898
+              ]
+            },
+            "clinical_rna_text": {
+              "c_index": 0.7251677852348994,
+              "ci95": [
+                0.6455112358668121,
+                0.8001993165616293
+              ],
+              "uno_c_tau1826": 0.6912706075495857,
+              "c_index_per_seed": [
+                0.6785714285714286,
+                0.7651006711409396,
+                0.7109300095877277,
+                0.7653403643336529,
+                0.7058964525407478
+              ]
+            },
+            "rna": {
+              "c_index": 0.5867689357622243,
+              "ci95": [
+                0.4887281850801321,
+                0.6849477085057313
+              ],
+              "uno_c_tau1826": 0.5549670535132971,
+              "c_index_per_seed": [
+                0.585091083413231,
+                0.5874880153403643,
+                0.5623202301054651,
+                0.5675934803451582,
+                0.6313518696069031
+              ]
+            }
+          },
+          "contrasts": {
+            "clinical_rna - clinical": {
+              "estimate": 0.010067114093959884,
+              "ci95": [
+                -0.061281040096275545,
+                0.07045246333931145
+              ],
+              "fraction_boot_gt_0": 0.6305
+            },
+            "clinical_text - clinical": {
+              "estimate": 0.07325023969319266,
+              "ci95": [
+                0.0005391226115727576,
+                0.13818443617916834
+              ],
+              "fraction_boot_gt_0": 0.975
+            },
+            "text - clinical": {
+              "estimate": -0.012080536912751683,
+              "ci95": [
+                -0.1305264593019586,
+                0.0982403517295312
+              ],
+              "fraction_boot_gt_0": 0.4255
+            },
+            "clinical_rna_text - clinical": {
+              "estimate": 0.09127516778523503,
+              "ci95": [
+                0.020839074985745682,
+                0.15810919033449522
+              ],
+              "fraction_boot_gt_0": 0.995
+            },
+            "rna - clinical": {
+              "estimate": -0.04712368168744008,
+              "ci95": [
+                -0.16090831702658323,
+                0.0651659249958771
+              ],
+              "fraction_boot_gt_0": 0.211
+            },
+            "clinical_rna_text - clinical_rna": {
+              "estimate": 0.08120805369127515,
+              "ci95": [
+                0.04225828819778685,
+                0.12536766921994225
+              ],
+              "fraction_boot_gt_0": 1.0
+            }
+          },
+          "bootstrap": {
+            "replicates": 2000,
+            "seed": 2026,
+            "comparable_pairs": 4172
+          },
+          "sensitivity_excluding_flagged_reports": {
+            "n": 214,
+            "events": 31,
+            "models": {
+              "clinical": {
+                "c_index": 0.6167388613861386,
+                "ci95": [
+                  0.5563669099493789,
+                  0.6765067570397466
+                ]
+              },
+              "clinical_rna": {
+                "c_index": 0.6213490099009901,
+                "ci95": [
+                  0.5304982098708325,
+                  0.7072648211895199
+                ]
+              },
+              "clinical_text": {
+                "c_index": 0.6826732673267327,
+                "ci95": [
+                  0.6045438454849488,
+                  0.7546469476613867
+                ]
+              },
+              "text": {
+                "c_index": 0.6045173267326733,
+                "ci95": [
+                  0.5094419045646836,
+                  0.6979712972181864
+                ]
+              },
+              "clinical_rna_text": {
+                "c_index": 0.7076113861386139,
+                "ci95": [
+                  0.6098966641861046,
+                  0.7960151075116123
+                ]
+              },
+              "rna": {
+                "c_index": 0.5835396039603961,
+                "ci95": [
+                  0.4673107648939115,
+                  0.6870170863407737
+                ]
+              }
+            },
+            "contrasts": {
+              "clinical_rna - clinical": {
+                "estimate": 0.00461014851485142,
+                "ci95": [
+                  -0.07058946467090522,
+                  0.07521154568641471
+                ],
+                "fraction_boot_gt_0": 0.561
+              },
+              "clinical_text - clinical": {
+                "estimate": 0.06593440594059408,
+                "ci95": [
+                  -0.008207718222087943,
+                  0.1294734407553021
+                ],
+                "fraction_boot_gt_0": 0.9595
+              },
+              "text - clinical": {
+                "estimate": -0.012221534653465316,
+                "ci95": [
+                  -0.13204090427650192,
+                  0.09995643546060923
+                ],
+                "fraction_boot_gt_0": 0.4245
+              },
+              "clinical_rna_text - clinical": {
+                "estimate": 0.0908725247524752,
+                "ci95": [
+                  0.008120678176030486,
+                  0.16543353902931987
+                ],
+                "fraction_boot_gt_0": 0.9795
+              },
+              "rna - clinical": {
+                "estimate": -0.03319925742574259,
+                "ci95": [
+                  -0.16034263525539275,
+                  0.08995894855435531
+                ],
+                "fraction_boot_gt_0": 0.3115
+              },
+              "clinical_rna_text - clinical_rna": {
+                "estimate": 0.08626237623762378,
+                "ci95": [
+                  0.04228180630468785,
+                  0.13350157981628172
+                ],
+                "fraction_boot_gt_0": 1.0
+              }
+            }
+          },
+          "training": [
+            {
+              "feature_set": "clinical",
+              "seed": 11,
+              "best_epoch": 0,
+              "stopped_epoch": 30,
+              "best_val_loss": 4.116898536682129,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical",
+              "seed": 23,
+              "best_epoch": 0,
+              "stopped_epoch": 30,
+              "best_val_loss": 4.0932207107543945,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical",
+              "seed": 37,
+              "best_epoch": 85,
+              "stopped_epoch": 115,
+              "best_val_loss": 4.10828161239624,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical",
+              "seed": 41,
+              "best_epoch": 94,
+              "stopped_epoch": 124,
+              "best_val_loss": 4.062125205993652,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical",
+              "seed": 53,
+              "best_epoch": 30,
+              "stopped_epoch": 60,
+              "best_val_loss": 4.121068000793457,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical_rna",
+              "seed": 11,
+              "best_epoch": 0,
+              "stopped_epoch": 30,
+              "best_val_loss": 4.140895843505859,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical_rna",
+              "seed": 23,
+              "best_epoch": 125,
+              "stopped_epoch": 155,
+              "best_val_loss": 4.045010566711426,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical_rna",
+              "seed": 37,
+              "best_epoch": 116,
+              "stopped_epoch": 146,
+              "best_val_loss": 4.055808067321777,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical_rna",
+              "seed": 41,
+              "best_epoch": 97,
+              "stopped_epoch": 127,
+              "best_val_loss": 4.036016941070557,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical_rna",
+              "seed": 53,
+              "best_epoch": 117,
+              "stopped_epoch": 147,
+              "best_val_loss": 4.031798362731934,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical_text",
+              "seed": 11,
+              "best_epoch": 65,
+              "stopped_epoch": 95,
+              "best_val_loss": 4.094843864440918,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical_text",
+              "seed": 23,
+              "best_epoch": 43,
+              "stopped_epoch": 73,
+              "best_val_loss": 4.08582067489624,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical_text",
+              "seed": 37,
+              "best_epoch": 80,
+              "stopped_epoch": 110,
+              "best_val_loss": 4.112048149108887,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical_text",
+              "seed": 41,
+              "best_epoch": 82,
+              "stopped_epoch": 112,
+              "best_val_loss": 4.0451273918151855,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical_text",
+              "seed": 53,
+              "best_epoch": 92,
+              "stopped_epoch": 122,
+              "best_val_loss": 4.057962417602539,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "text",
+              "seed": 11,
+              "best_epoch": 76,
+              "stopped_epoch": 106,
+              "best_val_loss": 4.059261322021484,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "text",
+              "seed": 23,
+              "best_epoch": 145,
+              "stopped_epoch": 175,
+              "best_val_loss": 3.976987838745117,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "text",
+              "seed": 37,
+              "best_epoch": 84,
+              "stopped_epoch": 114,
+              "best_val_loss": 4.050501823425293,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "text",
+              "seed": 41,
+              "best_epoch": 75,
+              "stopped_epoch": 105,
+              "best_val_loss": 4.085213661193848,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "text",
+              "seed": 53,
+              "best_epoch": 108,
+              "stopped_epoch": 138,
+              "best_val_loss": 4.021663188934326,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical_rna_text",
+              "seed": 11,
+              "best_epoch": 91,
+              "stopped_epoch": 121,
+              "best_val_loss": 4.019009590148926,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical_rna_text",
+              "seed": 23,
+              "best_epoch": 93,
+              "stopped_epoch": 123,
+              "best_val_loss": 3.9943015575408936,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical_rna_text",
+              "seed": 37,
+              "best_epoch": 78,
+              "stopped_epoch": 108,
+              "best_val_loss": 4.080628395080566,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical_rna_text",
+              "seed": 41,
+              "best_epoch": 91,
+              "stopped_epoch": 121,
+              "best_val_loss": 3.939054250717163,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical_rna_text",
+              "seed": 53,
+              "best_epoch": 99,
+              "stopped_epoch": 129,
+              "best_val_loss": 3.957798480987549,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "rna",
+              "seed": 11,
+              "best_epoch": 121,
+              "stopped_epoch": 151,
+              "best_val_loss": 4.047320365905762,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "rna",
+              "seed": 23,
+              "best_epoch": 99,
+              "stopped_epoch": 129,
+              "best_val_loss": 4.079538345336914,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "rna",
+              "seed": 37,
+              "best_epoch": 103,
+              "stopped_epoch": 133,
+              "best_val_loss": 4.05115270614624,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "rna",
+              "seed": 41,
+              "best_epoch": 99,
+              "stopped_epoch": 129,
+              "best_val_loss": 4.0377631187438965,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "rna",
+              "seed": 53,
+              "best_epoch": 120,
+              "stopped_epoch": 150,
+              "best_val_loss": 3.9740917682647705,
+              "hit_max_epochs": false
+            }
+          ]
+        }
+      }
+    },
+    "OS": {
+      "test_events": 37,
+      "families": {
+        "cox": {
+          "models": {
+            "clinical": {
+              "c_index": 0.7563068920676203,
+              "ci95": [
+                0.6645974075582415,
+                0.8403021973095957
+              ],
+              "uno_c_tau1826": 0.6803208451328281
+            },
+            "clinical_rna": {
+              "c_index": 0.7500650195058518,
+              "ci95": [
+                0.6553192470245809,
+                0.8419154548844872
+              ],
+              "uno_c_tau1826": 0.7122091658136844
+            },
+            "clinical_text": {
+              "c_index": 0.7778933680104031,
+              "ci95": [
+                0.68677274355364,
+                0.8607119010552048
+              ],
+              "uno_c_tau1826": 0.7229923752198467
+            },
+            "text": {
+              "c_index": 0.6150845253576073,
+              "ci95": [
+                0.4916309653361643,
+                0.7366631392087852
+              ],
+              "uno_c_tau1826": 0.6462562827237093
+            },
+            "clinical_rna_text": {
+              "c_index": 0.7719115734720416,
+              "ci95": [
+                0.6773719376056174,
+                0.8590341088138567
+              ],
+              "uno_c_tau1826": 0.7541448674077125
+            },
+            "rna": {
+              "c_index": 0.6304291287386216,
+              "ci95": [
+                0.4988020686137324,
+                0.7574356559560836
+              ],
+              "uno_c_tau1826": 0.6817481666563413
+            }
+          },
+          "contrasts": {
+            "clinical_rna - clinical": {
+              "estimate": -0.006241872561768447,
+              "ci95": [
+                -0.05909781552922987,
+                0.049091841300619
+              ],
+              "fraction_boot_gt_0": 0.4005
+            },
+            "clinical_text - clinical": {
+              "estimate": 0.021586475942782846,
+              "ci95": [
+                -0.03927415765246024,
+                0.08379466362469334
+              ],
+              "fraction_boot_gt_0": 0.7595
+            },
+            "text - clinical": {
+              "estimate": -0.14122236671001298,
+              "ci95": [
+                -0.2951180995446029,
+                0.008656508360360249
+              ],
+              "fraction_boot_gt_0": 0.0325
+            },
+            "clinical_rna_text - clinical": {
+              "estimate": 0.015604681404421394,
+              "ci95": [
+                -0.06009205878432416,
+                0.09071799914567008
+              ],
+              "fraction_boot_gt_0": 0.657
+            },
+            "rna - clinical": {
+              "estimate": -0.1258777633289987,
+              "ci95": [
+                -0.2847004548562845,
+                0.02023643990738957
+              ],
+              "fraction_boot_gt_0": 0.046
+            },
+            "clinical_rna_text - clinical_rna": {
+              "estimate": 0.02184655396618984,
+              "ci95": [
+                -0.027129664544377104,
+                0.07275482250660611
+              ],
+              "fraction_boot_gt_0": 0.826
+            }
+          },
+          "bootstrap": {
+            "replicates": 2000,
+            "seed": 2026,
+            "comparable_pairs": 3845
+          },
+          "sensitivity_excluding_flagged_reports": {
+            "n": 214,
+            "events": 32,
+            "models": {
+              "clinical": {
+                "c_index": 0.7680873925501432,
+                "ci95": [
+                  0.6593745443930561,
+                  0.8570947066027798
+                ]
+              },
+              "clinical_rna": {
+                "c_index": 0.7679083094555874,
+                "ci95": [
+                  0.6708330580836802,
+                  0.8522782450489144
+                ]
+              },
+              "clinical_text": {
+                "c_index": 0.78689111747851,
+                "ci95": [
+                  0.6998927826773995,
+                  0.8666740412979351
+                ]
+              },
+              "text": {
+                "c_index": 0.623567335243553,
+                "ci95": [
+                  0.513749333175465,
+                  0.7439084388893548
+                ]
+              },
+              "clinical_rna_text": {
+                "c_index": 0.788323782234957,
+                "ci95": [
+                  0.7077859605683343,
+                  0.8674089481996468
+                ]
+              },
+              "rna": {
+                "c_index": 0.6407593123209169,
+                "ci95": [
+                  0.5026067788268511,
+                  0.7670685293362076
+                ]
+              }
+            },
+            "contrasts": {
+              "clinical_rna - clinical": {
+                "estimate": -0.00017908309455583193,
+                "ci95": [
+                  -0.050100967642090405,
+                  0.05576767683687022
+                ],
+                "fraction_boot_gt_0": 0.482
+              },
+              "clinical_text - clinical": {
+                "estimate": 0.018803724928366794,
+                "ci95": [
+                  -0.03933068060999849,
+                  0.08175027827559371
+                ],
+                "fraction_boot_gt_0": 0.738
+              },
+              "text - clinical": {
+                "estimate": -0.14452005730659023,
+                "ci95": [
+                  -0.29264327062604995,
+                  0.020711372183409092
+                ],
+                "fraction_boot_gt_0": 0.0375
+              },
+              "clinical_rna_text - clinical": {
+                "estimate": 0.020236389684813783,
+                "ci95": [
+                  -0.05090340199681869,
+                  0.09940583885394051
+                ],
+                "fraction_boot_gt_0": 0.7285
+              },
+              "rna - clinical": {
+                "estimate": -0.12732808022922637,
+                "ci95": [
+                  -0.2927889099664237,
+                  0.03719404394095424
+                ],
+                "fraction_boot_gt_0": 0.064
+              },
+              "clinical_rna_text - clinical_rna": {
+                "estimate": 0.020415472779369614,
+                "ci95": [
+                  -0.03377338963707263,
+                  0.0833918723671075
+                ],
+                "fraction_boot_gt_0": 0.762
+              }
+            }
+          }
+        },
+        "nn": {
+          "models": {
+            "clinical": {
+              "c_index": 0.7560728218465539,
+              "ci95": [
+                0.6728335510039847,
+                0.8380506317464738
+              ],
+              "uno_c_tau1826": 0.6892259364887253,
+              "c_index_per_seed": [
+                0.7618985695708712,
+                0.7495448634590377,
+                0.7569570871261379,
+                0.7630689206762029,
+                0.7488946684005201
+              ]
+            },
+            "clinical_rna": {
+              "c_index": 0.6828608582574772,
+              "ci95": [
+                0.5907253343717169,
+                0.7728190178953516
+              ],
+              "uno_c_tau1826": 0.6833733589958809,
+              "c_index_per_seed": [
+                0.6897269180754226,
+                0.7664499349804942,
+                0.6491547464239272,
+                0.6983094928478544,
+                0.6106631989596879
+              ]
+            },
+            "clinical_text": {
+              "c_index": 0.7644733420026006,
+              "ci95": [
+                0.6808987735602461,
+                0.841340769953719
+              ],
+              "uno_c_tau1826": 0.7189257701735043,
+              "c_index_per_seed": [
+                0.7810143042912874,
+                0.7690507152145644,
+                0.7505851755526658,
+                0.7521456436931079,
+                0.7695708712613785
+              ]
+            },
+            "text": {
+              "c_index": 0.6156566970091026,
+              "ci95": [
+                0.5192687527988912,
+                0.7104991000051012
+              ],
+              "uno_c_tau1826": 0.6307821943920525,
+              "c_index_per_seed": [
+                0.5989596879063719,
+                0.5862158647594278,
+                0.6715214564369311,
+                0.6130039011703511,
+                0.6085825747724317
+              ]
+            },
+            "clinical_rna_text": {
+              "c_index": 0.7212483745123537,
+              "ci95": [
+                0.6369496660779911,
+                0.8057594774688188
+              ],
+              "uno_c_tau1826": 0.7209930040170056,
+              "c_index_per_seed": [
+                0.6678803641092328,
+                0.7703511053315995,
+                0.729518855656697,
+                0.7511053315994799,
+                0.6873862158647595
+              ]
+            },
+            "rna": {
+              "c_index": 0.5417685305591678,
+              "ci95": [
+                0.47955344772456737,
+                0.6067100513783216
+              ],
+              "uno_c_tau1826": 0.5671625197746206,
+              "c_index_per_seed": [
+                0.5045513654096229,
+                0.5403120936280884,
+                0.493888166449935,
+                0.5641092327698309,
+                0.6059817945383615
+              ]
+            }
+          },
+          "contrasts": {
+            "clinical_rna - clinical": {
+              "estimate": -0.07321196358907667,
+              "ci95": [
+                -0.1732231189543965,
+                0.01833230495719169
+              ],
+              "fraction_boot_gt_0": 0.063
+            },
+            "clinical_text - clinical": {
+              "estimate": 0.008400520156046754,
+              "ci95": [
+                -0.051563086150238,
+                0.06658161622581929
+              ],
+              "fraction_boot_gt_0": 0.6045
+            },
+            "text - clinical": {
+              "estimate": -0.14041612483745125,
+              "ci95": [
+                -0.26307881718464243,
+                -0.01605245773149703
+              ],
+              "fraction_boot_gt_0": 0.0145
+            },
+            "clinical_rna_text - clinical": {
+              "estimate": -0.034824447334200204,
+              "ci95": [
+                -0.1328797786466161,
+                0.054955541267228784
+              ],
+              "fraction_boot_gt_0": 0.2515
+            },
+            "rna - clinical": {
+              "estimate": -0.21430429128738604,
+              "ci95": [
+                -0.32099325999985806,
+                -0.11652139693407142
+              ],
+              "fraction_boot_gt_0": 0.0
+            },
+            "clinical_rna_text - clinical_rna": {
+              "estimate": 0.038387516254876464,
+              "ci95": [
+                0.004072126700803125,
+                0.07899230728336754
+              ],
+              "fraction_boot_gt_0": 0.986
+            }
+          },
+          "bootstrap": {
+            "replicates": 2000,
+            "seed": 2026,
+            "comparable_pairs": 3845
+          },
+          "sensitivity_excluding_flagged_reports": {
+            "n": 214,
+            "events": 32,
+            "models": {
+              "clinical": {
+                "c_index": 0.7605659025787965,
+                "ci95": [
+                  0.6567442368711084,
+                  0.8467065215260831
+                ]
+              },
+              "clinical_rna": {
+                "c_index": 0.6790114613180517,
+                "ci95": [
+                  0.5736519943704645,
+                  0.7811128623287763
+                ]
+              },
+              "clinical_text": {
+                "c_index": 0.773567335243553,
+                "ci95": [
+                  0.6937600194026975,
+                  0.8460822167007087
+                ]
+              },
+              "text": {
+                "c_index": 0.6292263610315187,
+                "ci95": [
+                  0.5506112881072337,
+                  0.7177154781585138
+                ]
+              },
+              "clinical_rna_text": {
+                "c_index": 0.7236389684813754,
+                "ci95": [
+                  0.6305110996693193,
+                  0.8108030267264668
+                ]
+              },
+              "rna": {
+                "c_index": 0.542227793696275,
+                "ci95": [
+                  0.4736735886133092,
+                  0.6138216261738505
+                ]
+              }
+            },
+            "contrasts": {
+              "clinical_rna - clinical": {
+                "estimate": -0.08155444126074485,
+                "ci95": [
+                  -0.18908045270675694,
+                  0.02763913480885304
+                ],
+                "fraction_boot_gt_0": 0.0785
+              },
+              "clinical_text - clinical": {
+                "estimate": 0.013001432664756507,
+                "ci95": [
+                  -0.04276462174189435,
+                  0.07356315781168997
+                ],
+                "fraction_boot_gt_0": 0.6845
+              },
+              "text - clinical": {
+                "estimate": -0.13133954154727778,
+                "ci95": [
+                  -0.24933667688616382,
+                  0.008161998691430283
+                ],
+                "fraction_boot_gt_0": 0.031
+              },
+              "clinical_rna_text - clinical": {
+                "estimate": -0.036926934097421094,
+                "ci95": [
+                  -0.1378937250309959,
+                  0.06739071732633682
+                ],
+                "fraction_boot_gt_0": 0.2555
+              },
+              "rna - clinical": {
+                "estimate": -0.21833810888252148,
+                "ci95": [
+                  -0.32906889100549547,
+                  -0.09272664288839405
+                ],
+                "fraction_boot_gt_0": 0.001
+              },
+              "clinical_rna_text - clinical_rna": {
+                "estimate": 0.044627507163323754,
+                "ci95": [
+                  0.008187688201934907,
+                  0.0888451222773944
+                ],
+                "fraction_boot_gt_0": 0.9925
+              }
+            }
+          },
+          "training": [
+            {
+              "feature_set": "clinical",
+              "seed": 11,
+              "best_epoch": 320,
+              "stopped_epoch": 350,
+              "best_val_loss": 3.4256463050842285,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical",
+              "seed": 23,
+              "best_epoch": 399,
+              "stopped_epoch": 399,
+              "best_val_loss": 3.474881172180176,
+              "hit_max_epochs": true
+            },
+            {
+              "feature_set": "clinical",
+              "seed": 37,
+              "best_epoch": 399,
+              "stopped_epoch": 399,
+              "best_val_loss": 3.4487149715423584,
+              "hit_max_epochs": true
+            },
+            {
+              "feature_set": "clinical",
+              "seed": 41,
+              "best_epoch": 207,
+              "stopped_epoch": 237,
+              "best_val_loss": 3.447352409362793,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical",
+              "seed": 53,
+              "best_epoch": 271,
+              "stopped_epoch": 301,
+              "best_val_loss": 3.4573776721954346,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical_rna",
+              "seed": 11,
+              "best_epoch": 101,
+              "stopped_epoch": 131,
+              "best_val_loss": 3.6606483459472656,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical_rna",
+              "seed": 23,
+              "best_epoch": 96,
+              "stopped_epoch": 126,
+              "best_val_loss": 3.5528879165649414,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical_rna",
+              "seed": 37,
+              "best_epoch": 110,
+              "stopped_epoch": 140,
+              "best_val_loss": 3.6278023719787598,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical_rna",
+              "seed": 41,
+              "best_epoch": 111,
+              "stopped_epoch": 141,
+              "best_val_loss": 3.425713539123535,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical_rna",
+              "seed": 53,
+              "best_epoch": 83,
+              "stopped_epoch": 113,
+              "best_val_loss": 3.6556882858276367,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical_text",
+              "seed": 11,
+              "best_epoch": 125,
+              "stopped_epoch": 155,
+              "best_val_loss": 3.4170382022857666,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical_text",
+              "seed": 23,
+              "best_epoch": 124,
+              "stopped_epoch": 154,
+              "best_val_loss": 3.484605550765991,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical_text",
+              "seed": 37,
+              "best_epoch": 183,
+              "stopped_epoch": 213,
+              "best_val_loss": 3.413086175918579,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical_text",
+              "seed": 41,
+              "best_epoch": 114,
+              "stopped_epoch": 144,
+              "best_val_loss": 3.4133894443511963,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical_text",
+              "seed": 53,
+              "best_epoch": 141,
+              "stopped_epoch": 171,
+              "best_val_loss": 3.5584311485290527,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "text",
+              "seed": 11,
+              "best_epoch": 103,
+              "stopped_epoch": 133,
+              "best_val_loss": 3.5732381343841553,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "text",
+              "seed": 23,
+              "best_epoch": 105,
+              "stopped_epoch": 135,
+              "best_val_loss": 3.613696813583374,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "text",
+              "seed": 37,
+              "best_epoch": 114,
+              "stopped_epoch": 144,
+              "best_val_loss": 3.627963066101074,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "text",
+              "seed": 41,
+              "best_epoch": 117,
+              "stopped_epoch": 147,
+              "best_val_loss": 3.5303003787994385,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "text",
+              "seed": 53,
+              "best_epoch": 127,
+              "stopped_epoch": 157,
+              "best_val_loss": 3.545215606689453,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical_rna_text",
+              "seed": 11,
+              "best_epoch": 87,
+              "stopped_epoch": 117,
+              "best_val_loss": 3.6311638355255127,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical_rna_text",
+              "seed": 23,
+              "best_epoch": 87,
+              "stopped_epoch": 117,
+              "best_val_loss": 3.5265135765075684,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical_rna_text",
+              "seed": 37,
+              "best_epoch": 131,
+              "stopped_epoch": 161,
+              "best_val_loss": 3.5741660594940186,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical_rna_text",
+              "seed": 41,
+              "best_epoch": 95,
+              "stopped_epoch": 125,
+              "best_val_loss": 3.3559465408325195,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "clinical_rna_text",
+              "seed": 53,
+              "best_epoch": 108,
+              "stopped_epoch": 138,
+              "best_val_loss": 3.4345946311950684,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "rna",
+              "seed": 11,
+              "best_epoch": 64,
+              "stopped_epoch": 94,
+              "best_val_loss": 3.720816135406494,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "rna",
+              "seed": 23,
+              "best_epoch": 21,
+              "stopped_epoch": 51,
+              "best_val_loss": 3.7256553173065186,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "rna",
+              "seed": 37,
+              "best_epoch": 0,
+              "stopped_epoch": 30,
+              "best_val_loss": 3.7170755863189697,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "rna",
+              "seed": 41,
+              "best_epoch": 74,
+              "stopped_epoch": 104,
+              "best_val_loss": 3.6772241592407227,
+              "hit_max_epochs": false
+            },
+            {
+              "feature_set": "rna",
+              "seed": 53,
+              "best_epoch": 90,
+              "stopped_epoch": 120,
+              "best_val_loss": 3.6661934852600098,
+              "hit_max_epochs": false
+            }
+          ]
+        }
+      }
+    }
+  },
+  "decision": {
+    "rule": "Text is reported as adding detectable held-out information only if, for the primary Cox family on PFI, the paired bootstrap 95% CI of C(clinical_text) - C(clinical) excludes 0 on the positive side. C(clinical_rna_text) - C(clinical_rna) is the key secondary contrast under the same rule. Otherwise report: no detectable gain in this cohort. Point estimates alone are not evidence.",
+    "primary_contrast": {
+      "name": "clinical_text - clinical",
+      "estimate": -0.010067114093959773,
+      "ci95": [
+        -0.0776365599915941,
+        0.06534644880865918
+      ],
+      "fraction_boot_gt_0": 0.3795
+    },
+    "key_secondary_contrast": {
+      "name": "clinical_rna_text - clinical_rna",
+      "estimate": 0.00023969319271333056,
+      "ci95": [
+        -0.040288912628347,
+        0.04207055085776231
+      ],
+      "fraction_boot_gt_0": 0.5115
+    },
+    "text_adds_detectable_information": false,
+    "text_adds_beyond_clinical_rna": false
+  },
+  "seconds": 23.3,
+  "peak_rss_mb": 534.2,
+  "environment": {
+    "python": "3.13.12",
+    "torch": "2.15.0+cpu",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "cpu_count": 16
+  }
+}
