@@ -1,0 +1,70 @@
+{
+  "n_reports": 1018,
+  "pattern_counts": {
+    "death_or_autopsy": 0,
+    "relapse_or_progression_of_disease": 0,
+    "recurrence_score_assay": 26,
+    "recurrent_or_prior_breast_cancer": 15,
+    "neoadjuvant_or_post_treatment": 89,
+    "follow_up_word": 9,
+    "survival_word": 22,
+    "distant_metastasis_named_site": 3
+  },
+  "patterns": {
+    "death_or_autopsy": "\\b(autops\\w*|expired|deceased|died|death|post[- ]?mortem)\\b",
+    "relapse_or_progression_of_disease": "\\b(relaps\\w*|disease progression|progressive disease|progressed)\\b",
+    "recurrence_score_assay": "(oncotype|recurrence scor|rate of distant recurrence|estimated recurrence)",
+    "recurrent_or_prior_breast_cancer": "(\\brecurrent\\b.{0,40}(carcinoma|cancer|tumou?r)|history of.{0,30}(breast )?(carcinoma|cancer)|prior.{0,20}(breast )?(carcinoma|cancer))",
+    "neoadjuvant_or_post_treatment": "(neoadjuvant|neo-adjuvant|post[- ]?(chemo\\w*|treatment|therapy)|treatment effect|therapy effect)",
+    "follow_up_word": "follow[- ]?up",
+    "survival_word": "\\bsurviv\\w*",
+    "distant_metastasis_named_site": "metasta\\w*.{0,40}\\b(liver|lung|bone|brain)\\b|\\b(liver|lung|bone|brain)\\b.{0,40}metasta"
+  },
+  "sensitivity_flags": [
+    "death_or_autopsy",
+    "relapse_or_progression_of_disease",
+    "recurrence_score_assay",
+    "recurrent_or_prior_breast_cancer",
+    "neoadjuvant_or_post_treatment"
+  ],
+  "sensitivity_flagged_total": 126,
+  "sensitivity_flagged_by_split": {
+    "dev": 85,
+    "test": 41
+  },
+  "examples": {
+    "death_or_autopsy": [],
+    "relapse_or_progression_of_disease": [],
+    "recurrence_score_assay": [
+      "...t. tissue with fibrocystic change and a focus of atypical lobular. hyperplasia. oncotype. results: = 14. clinical experience: patients with a recurrence score of 14 in ...",
+      "...res/aadenda: addendum. date complete. addendum diagnosis. part #5: left breast. oncotype testing results received on. :currence scork -23. average rate of distant recur...",
+      "...: negative. ki-67 labeling index: 30. based on above tumor characteristics, the estimated recurrence score. using. is reported below. 1 (includes a-f): 22.59. 2 (includes a-e): 16...."
+    ],
+    "recurrent_or_prior_breast_cancer": [
+      "...ation, no tumor. (dr. clinical history. the patient is a. year-old woman with a history of right breast adenocarcinoma diagnosed by fine. needle aspiration. she now undergoes right breast partial ma...",
+      "...tastic carcinoma is. clinical diagnosis and history: year old white female with history of left breast cancer. frozen section diagnosis: specimen type:lymph node (specimen \"e\") . reported t...",
+      "...ental prospective. peer review. clinical diagnosis and history: y/o female with history of right breast carcinoma. pre-operative diagnosis: none provided. post-operative diagnosis: none provide..."
+    ],
+    "neoadjuvant_or_post_treatment": [
+      "...eft breast, mastectomy: 1. intraductal papilloma (a10). 2. breast with previous treatment effect. b. left nipple areola margin, excision: subareolar tissue with lactiferous duc...",
+      "...25 mm. distance from medial margin: 80 mm. distance from lateral margin: 35 mm. treatment effect: in the breast - no known presurgical therapy. in the lymph nodes - no known pr...",
+      "...o. axillary (yes/no) : yes. specimen size (greatest dimension) (xy,n/a) cm: 31. neoadjuvant therapy (yes/no) : no. laterality: left. tumor site: upper outer quadrant. mult..."
+    ],
+    "follow_up_word": [
+      "...intraductal components. no skin infiltration. considering the tumor-free medial follow-up resection material (sample 3), the. carcinoma was certainly excised in toto. co...",
+      "...ngitis and two axillary lymph node metastases (of 20. lymph nodes studied). the follow-up resection samples in nos 2 and 3 were both carcinoma-. free. tumor classificati...",
+      "...nd. dorsal 1.5 cm). the tumor-free, ink-stained resection margin of the ventral follow-up resection. material (preparation 4) gives rise to the following tumor classific..."
+    ],
+    "survival_word": [
+      "...to other prognostic factors currently used to predict disease-free. and overall survival in stage ii, node-positive breast cancer patients. in making decisions regardin...",
+      "...b substantially increases the likelihood for an objective. response and overall survival for patients with metastatic her2-positive breast cancer, regardless of. whethe...",
+      "...to other prognostic factors currently used to predict disease-free. and overall survival in stage ii, node-positive breast cancer patients. in making decisions regardin..."
+    ],
+    "distant_metastasis_named_site": [
+      "...malignant tumors with capability to metastasize to. distant sites (hematogenous metastasis to sites such as liver, lung, brain, etc.), even. though some studies have shown that metastasis to axillary lymph ...",
+      "... 35% positive cells. the above results are similar to the those obtained on the metastatic carcinoma in the left. iliac bone. diagnosis: a. left breast, prophylactic mastectomy: - gynecomastia. - unremark...",
+      "...teriorly there was enhancement 2 cm from clip and. close to nipple. pet, ct and bone scan show no evidence of metastatic disease. invasive ductal. carcinoma sbr grade 2, er positive, pr positive, h..."
+    ]
+  },
+  "reads_outcomes": false
+}

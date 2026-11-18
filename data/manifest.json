@@ -1,0 +1,138 @@
+{
+  "created_at": "2026-11-18T22:00:11.771674+00:00",
+  "cohort_steps": [
+    {
+      "step": "TCGA-CDR rows with type == BRCA",
+      "n": 1097
+    },
+    {
+      "step": "exclude CDR Redaction == 'Redacted'",
+      "n": 1092
+    },
+    {
+      "step": "require PFI.time > 0 and OS.time > 0 with known event status",
+      "n": 1078
+    },
+    {
+      "step": "has pathology report (TCGA-Reports)",
+      "n": 1019
+    },
+    {
+      "step": "and has primary-tumor RNA-seq (Xena HiSeqV2, sample type 01)",
+      "n": 1018
+    }
+  ],
+  "modality_counts": {
+    "clinical_eligible": 1078,
+    "clinical_with_report": 1019,
+    "clinical_with_rna_primary_tumor": 1076,
+    "all_three": 1018,
+    "report_repo_brca_patients": 1097,
+    "report_repo_brca_not_in_cdr_eligible": 19,
+    "reports_total_all_cancers": 9523
+  },
+  "joint_cohort": 1018,
+  "split": {
+    "dev": {
+      "n": 763,
+      "pfi_events": 105,
+      "os_events": 108
+    },
+    "test": {
+      "n": 255,
+      "pfi_events": 35,
+      "os_events": 37
+    }
+  },
+  "split_rule": "Within each PFI-event stratum, sort patients by SHA256(patient_id|tcga-text-v1); first round(0.25*n) are test. Event status is read only for stratification.",
+  "rna_genes_without_missing": 20530,
+  "clinical_missing": {
+    "age": 0,
+    "stage": 24,
+    "histology_lobular": 0,
+    "histology_other": 0
+  },
+  "stage_raw_counts_joint": {
+    "Stage IIA": 332,
+    "Stage IIB": 230,
+    "Stage IIIA": 143,
+    "Stage I": 89,
+    "Stage IA": 83,
+    "Stage IIIC": 61,
+    "Stage IIIB": 23,
+    "Stage IV": 20,
+    "Stage X": 13,
+    "[Discrepancy]": 6,
+    "Stage II": 6,
+    "Stage IB": 5,
+    "[Not Available]": 5,
+    "Stage III": 2
+  },
+  "histology_raw_counts_joint": {
+    "Infiltrating Ductal Carcinoma": 726,
+    "Infiltrating Lobular Carcinoma": 196,
+    "Other, specify": 40,
+    "Mixed Histology (please specify)": 27,
+    "Mucinous Carcinoma": 14,
+    "Metaplastic Carcinoma": 8,
+    "Medullary Carcinoma": 5,
+    "Infiltrating Carcinoma NOS": 1,
+    "[Not Available]": 1
+  },
+  "sources": {
+    "reports": {
+      "url": "https://raw.githubusercontent.com/jkefeli/tcga-path-reports/main/TCGA_Reports.csv.zip",
+      "retrieved_at": "2026-11-18T21:54:22.665584+00:00",
+      "sha256": "bbbc0ee0c75d8feb0bb246b4fa40e8e29bba9775d4a9e4f41e0b73a7955e1c12",
+      "bytes": 10913820,
+      "file": "TCGA_Reports.csv.zip",
+      "license": "CC BY 4.0 (Mendeley Data DOI 10.17632/hyg5xkznpx.1); code repository jkefeli/tcga-path-reports is MIT",
+      "citation": "Kefeli J, Tatonetti N. TCGA-Reports: A machine-readable pathology report resource for benchmarking text-based AI models. Patterns 2024."
+    },
+    "report_cancer_type": {
+      "url": "https://raw.githubusercontent.com/jkefeli/tcga-path-reports/main/data/tcga_metadata/tcga_patient_to_cancer_type.csv",
+      "retrieved_at": "2026-11-18T21:54:31.489184+00:00",
+      "sha256": "acb7ac3aba8b2daa69aab493e94f06c289b1f3365a0bd07e09222b9c4af791b3",
+      "bytes": 209548,
+      "file": "tcga_patient_to_cancer_type.csv",
+      "license": "MIT (jkefeli/tcga-path-reports)",
+      "citation": "Kefeli & Tatonetti 2024 repository metadata (cross-check only; CDR type is authoritative)"
+    },
+    "cdr": {
+      "url": "https://api.gdc.cancer.gov/data/1b5f413e-a8d1-4d10-92eb-7c4ae739ed81",
+      "retrieved_at": "2026-11-18T21:54:37.130384+00:00",
+      "sha256": "ea594c0fbb6731477c7ac511fab449ca9c38b0d42d269591ed9f5c4090e75a5a",
+      "bytes": 2945129,
+      "file": "TCGA-CDR-SupplementalTableS1.xlsx",
+      "license": "NCI Genomic Data Commons open-access PanCanAtlas publication supplement; TCGA open-access data (NIH TCGA publication guidelines, no access restrictions)",
+      "citation": "Liu J, et al. An integrated TCGA pan-cancer clinical data resource to drive high-quality survival outcome analytics. Cell 2018;173:400-416."
+    },
+    "rna": {
+      "url": "https://tcga.xenahubs.net/download/TCGA.BRCA.sampleMap/HiSeqV2.gz",
+      "retrieved_at": "2026-11-18T21:56:39.930547+00:00",
+      "sha256": "263bf67245cc4b9062676583c0ff0306f08471a26aafd5504037e1da22133746",
+      "bytes": 64286337,
+      "file": "HiSeqV2.gz",
+      "license": "UCSC Xena TCGA hub; dataset metadata security=public, redistribution=true; underlying TCGA open-access Level 3 data",
+      "citation": "Goldman MJ, et al. Visualizing and interpreting cancer genomics data via the Xena platform. Nat Biotechnol 2020. Data: TCGA BRCA IlluminaHiSeq RNASeqV2, log2(RSEM norm_count+1), Xena version 2017-10-13."
+    },
+    "rna_metadata": {
+      "url": "https://tcga.xenahubs.net/download/TCGA.BRCA.sampleMap/HiSeqV2.json",
+      "retrieved_at": "2026-11-18T21:56:40.477747+00:00",
+      "sha256": "13adefb51409b49f71955c90c36a4d7b6aebaa31ec7ae3afa0f10d2387e9b0e5",
+      "bytes": 2570,
+      "file": "HiSeqV2.json",
+      "license": "UCSC Xena dataset metadata",
+      "citation": "UCSC Xena"
+    }
+  },
+  "derived_sha256": {
+    "data/derived/clinical.csv": "ea666f11f79b48967db7b7e57d5c49e04fe72fee422867464715295bbb104944",
+    "data/derived/dev_labels.csv": "657d0ad31dfed47fd0d4ad818ff7f6a0ff69b42cbe284377c7c05ec3a1bab51a",
+    "data/derived/reports.csv": "2555a12a1502ee8b453de48ba132cc42524fecdf593e196013e685ffad805bf6",
+    "data/derived/rna.npy": "edba7535d761c81079d9260df3f4ff590ed0c70e5b65354d56236002786a0673",
+    "data/derived/rna_genes.json": "4023ccc7ae0e54460f5423a7c570c9083c260d37535e16dd73422997047e8ca1",
+    "data/derived/test_labels.csv": "76dbcc54190b10e0167a5dceaf00401564a78507b8202db3abe70cd97421aac4"
+  },
+  "membership_sha256": "2c37bc6acba2945590980eefb00a58071dff4c9697746835b9da32477d0be115"
+}

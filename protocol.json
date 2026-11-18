@@ -1,0 +1,48 @@
+{
+  "version": "1.0",
+  "purpose": "Independent research prototype on public de-identified data; not clinical validation, not publication-ready",
+  "question": "In TCGA-BRCA patients with all three modalities, does a frozen-transformer embedding of the diagnostic pathology report add held-out progression-free-interval ranking information beyond baseline clinical covariates, and beyond clinical + RNA-seq?",
+  "primary_endpoint": "PFI",
+  "secondary_endpoint": "OS",
+  "endpoint_source": "TCGA-CDR (Liu et al., Cell 2018), columns PFI/PFI.time and OS/OS.time, times in days",
+  "clinical_features": ["age", "stage", "histology_lobular", "histology_other"],
+  "missing_indicator_features": ["stage"],
+  "modalities": {
+    "rna": {"top_variance_genes": 5000, "pca_components": 16},
+    "text": {"pca_components": 16}
+  },
+  "feature_sets": {
+    "clinical": ["clinical"],
+    "clinical_rna": ["clinical", "rna"],
+    "clinical_text": ["clinical", "text"],
+    "text": ["text"],
+    "clinical_rna_text": ["clinical", "rna", "text"],
+    "rna": ["rna"]
+  },
+  "reference_feature_set": "clinical",
+  "primary_model_family": "cox",
+  "cox": {"library": "lifelines CoxPHFitter", "penalizer": 0.1, "l1_ratio": 0.0, "ties": "Efron (lifelines default)"},
+  "nn": {
+    "architecture": "late fusion: per-modality branch Linear(d,16)-ReLU-Dropout(0.2)-Linear(16,8)-ReLU; concatenate branches; Linear(8*m,1,bias=False)",
+    "loss": "Breslow negative Cox partial log-likelihood (full batch)",
+    "optimizer": "Adam", "learning_rate": 0.001, "weight_decay": 0.001,
+    "max_epochs": 400, "patience": 30, "min_delta": 0.0001,
+    "inner_validation_fraction": 0.2,
+    "seeds": [11, 23, 37, 41, 53],
+    "seed_aggregation": "C-index averaged over seeds (pairwise scores averaged); no ensembling of risks; no best-seed selection"
+  },
+  "development": {"cv_folds": 5, "cv_repeats": 3, "data": "development split only"},
+  "test_fraction": 0.25,
+  "primary_metric": "Strict-time Harrell C-index (pairs with strictly ordered observed times and an event at the earlier time; tied risks get half credit)",
+  "secondary_metric": "Uno's IPCW C-index (scikit-survival concordance_index_ipcw), censoring distribution from development set, tau = 1826 days",
+  "bootstrap": {"replicates": 2000, "seed": 2026, "unit": "patient", "interval": "95% percentile; paired (same resamples for all models)"},
+  "decision_rule": "Text is reported as adding detectable held-out information only if, for the primary Cox family on PFI, the paired bootstrap 95% CI of C(clinical_text) - C(clinical) excludes 0 on the positive side. C(clinical_rna_text) - C(clinical_rna) is the key secondary contrast under the same rule. Otherwise report: no detectable gain in this cohort. Point estimates alone are not evidence.",
+  "sensitivity": "Test-set evaluation of already-fitted models after removing patients whose report matches prespecified text flags (src/text.py SENSITIVITY_FLAGS). No refitting.",
+  "dev_only_diagnostics": ["text PCs -> tissue source site (TSS) predictability, text only, no outcomes", "site-only Cox (TSS one-hot) development CV C-index to bound how much a site signal alone could rank outcomes"],
+  "max_rss_mb": 4000,
+  "gpu": false,
+  "cloud_spend_usd": 0,
+  "llm_api_calls": 0,
+  "scientific_result": false,
+  "publication_ready": false
+}
