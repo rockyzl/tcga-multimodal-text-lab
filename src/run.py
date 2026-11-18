@@ -3,6 +3,7 @@ import argparse
 import json
 import os
 import platform
+import resource
 import subprocess
 import sys
 import time
@@ -97,38 +98,59 @@ def site_onehot(tss, train_mask, min_count=10):
     return ((x - mean) / sd).to_numpy(np.float32)
 
 
-def dev(families):
+_CACHE = {}
+
+
+def _dev_task(args):
+    """One (endpoint, repeat, fold) development task; runs in a worker process."""
+    endpoint, rep, k, families = args
     torch.set_num_threads(1)
+    if "inputs" not in _CACHE:
+        _CACHE["inputs"] = load_inputs("dev")
+    p, clin, reports, raw, labels, rows = _CACHE["inputs"]
+    ids = labels.patient_id.to_numpy()
+    tc, ec = ENDPOINTS[endpoint]
+    t_all, e_all = labels[tc].to_numpy(float), labels[ec].to_numpy(int)
+    folds = cv_folds(ids, labels.pfi_event, rep, p["development"]["cv_folds"])
+    f = np.array([folds[i] for i in ids])
+    tr, ev = np.where(f != k)[0], np.where(f == k)[0]
+    blocks, info = fit_transform_blocks(raw, rows[tr], rows[ev], p)
+    b_tr = {m: v[0] for m, v in blocks.items()}
+    b_ev = {m: v[1] for m, v in blocks.items()}
+    preds, diag = fit_predict_all(p, b_tr, b_ev, t_all[tr], e_all[tr], ids[tr], families)
+    fold_rows = [{"endpoint": endpoint, "repeat": rep, "fold": k, "family": fam, "feature_set": fs, "c_index": c_of(pr, t_all[ev], e_all[ev]), "n_eval": len(ev), "events_eval": int(e_all[ev].sum()), **info} for (fam, fs), pr in preds.items()]
+    nn_diag = [{"endpoint": endpoint, "repeat": rep, "fold": k, **d} for d in diag]
+    site_row = tss_row = None
+    if endpoint == "PFI":
+        # Dev-only diagnostic 1: site-only Cox (how much can tissue-source-site alone rank PFI?)
+        tss = reports.tss.iloc[rows].reset_index(drop=True)
+        mask = np.zeros(len(rows), bool)
+        mask[tr] = True
+        xs = site_onehot(tss, mask)
+        cph = fit_cox(xs[tr], t_all[tr], e_all[tr], p["cox"]["penalizer"], 0.0)
+        site_row = {"repeat": rep, "fold": k, "c_index": concordance(t_all[ev], e_all[ev], predict_cox(cph, xs[ev]))}
+        # Dev-only diagnostic 2 (no outcomes): can text PCs identify the tissue source site?
+        if rep == 0:
+            tss_row = tss_predictability(raw["text"][rows], tss.to_numpy(), tr, ev, p)
+    return fold_rows, nn_diag, site_row, tss_row, psutil.Process().memory_info().rss
+
+
+def dev(families, workers):
+    from concurrent.futures import ProcessPoolExecutor
+
     t0 = time.time()
     p, clin, reports, raw, labels, rows = load_inputs("dev")
     ids = labels.patient_id.to_numpy()
-    fold_rows, nn_diag, site_rows, tss_rows = [], [], [], []
-    for endpoint, (tc, ec) in ENDPOINTS.items():
-        t_all, e_all = labels[tc].to_numpy(float), labels[ec].to_numpy(int)
-        for rep in range(p["development"]["cv_repeats"]):
-            folds = cv_folds(ids, labels.pfi_event, rep, p["development"]["cv_folds"])
-            f = np.array([folds[i] for i in ids])
-            for k in range(p["development"]["cv_folds"]):
-                tr, ev = np.where(f != k)[0], np.where(f == k)[0]
-                blocks, info = fit_transform_blocks(raw, rows[tr], rows[ev], p)
-                b_tr = {m: v[0] for m, v in blocks.items()}
-                b_ev = {m: v[1] for m, v in blocks.items()}
-                preds, diag = fit_predict_all(p, b_tr, b_ev, t_all[tr], e_all[tr], ids[tr], families)
-                for (fam, fs), pr in preds.items():
-                    fold_rows.append({"endpoint": endpoint, "repeat": rep, "fold": k, "family": fam, "feature_set": fs, "c_index": c_of(pr, t_all[ev], e_all[ev]), "n_eval": len(ev), "events_eval": int(e_all[ev].sum()), **info})
-                nn_diag += [{"endpoint": endpoint, "repeat": rep, "fold": k, **d} for d in diag]
-                if endpoint == "PFI":
-                    # Dev-only diagnostic 1: site-only Cox (how much can tissue-source-site alone rank PFI?)
-                    tss = reports.tss.iloc[rows].reset_index(drop=True)
-                    mask = np.zeros(len(rows), bool)
-                    mask[tr] = True
-                    xs = site_onehot(tss, mask)
-                    cph = fit_cox(xs[tr], t_all[tr], e_all[tr], p["cox"]["penalizer"], 0.0)
-                    site_rows.append({"repeat": rep, "fold": k, "c_index": concordance(t_all[ev], e_all[ev], predict_cox(cph, xs[ev]))})
-                    # Dev-only diagnostic 2 (no outcomes): can text PCs identify the tissue source site?
-                    if rep == 0:
-                        tss_rows.append(tss_predictability(raw["text"][rows], tss.to_numpy(), tr, ev, p))
-                print(f"[{time.time() - t0:6.0f}s] {endpoint} repeat {rep} fold {k} done", flush=True)
+    tasks = [(ep, rep, k, families) for ep in ENDPOINTS for rep in range(p["development"]["cv_repeats"]) for k in range(p["development"]["cv_folds"])]
+    fold_rows, nn_diag, site_rows, tss_rows, worker_rss = [], [], [], [], []
+    with ProcessPoolExecutor(max_workers=workers) as pool:
+        for task, (fr, nd, sr, tr_, rss) in zip(tasks, pool.map(_dev_task, tasks)):
+            fold_rows += fr
+            nn_diag += nd
+            site_rows += [sr] if sr else []
+            tss_rows += [tr_] if tr_ else []
+            worker_rss.append(rss)
+            print(f"[{time.time() - t0:6.0f}s] {task[0]} repeat {task[1]} fold {task[2]} done", flush=True)
     df = pd.DataFrame(fold_rows)
     summary = []
     for (endpoint, fam, fs), g in df.groupby(["endpoint", "family", "feature_set"], sort=False):
@@ -149,7 +171,10 @@ def dev(families):
             "text_to_tss": summarize_tss(tss_rows),
         },
         "seconds": round(time.time() - t0, 1),
-        "peak_rss_mb": round(psutil.Process().memory_info().rss / 2**20, 1),
+        "peak_rss_mb": round(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024, 1),
+        "max_worker_rss_mb_at_task_end": round(max(worker_rss) / 2**20, 1),
+        "peak_child_rss_mb": round(resource.getrusage(resource.RUSAGE_CHILDREN).ru_maxrss / 1024, 1),
+        "workers": workers,
         "environment": env_info(),
     }
     write_json(RESULTS / "dev_cv.json", out)
@@ -256,8 +281,9 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("phase", choices=["dev", "freeze", "test"])
     ap.add_argument("--families", default="cox,nn")
+    ap.add_argument("--workers", type=int, default=4)
     a = ap.parse_args()
-    {"dev": lambda: dev(tuple(a.families.split(","))), "freeze": freeze, "test": test}[a.phase]()
+    {"dev": lambda: dev(tuple(a.families.split(",")), a.workers), "freeze": freeze, "test": test}[a.phase]()
 
 
 if __name__ == "__main__":

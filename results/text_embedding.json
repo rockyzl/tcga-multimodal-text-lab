@@ -1,0 +1,37 @@
+{
+  "model_id": "microsoft/BiomedNLP-BiomedBERT-base-uncased-abstract-fulltext",
+  "revision": "e1354b7a3a09615f6aba48dfad4b7a613eef7062",
+  "license": "MIT (Hugging Face model card tag license:mit)",
+  "frozen": true,
+  "fine_tuned": false,
+  "max_length": 512,
+  "stride": 64,
+  "pooling": "attention-masked mean of last hidden layer per chunk (includes [CLS]/[SEP]); unweighted mean over chunks",
+  "n_reports": 1018,
+  "dim": 768,
+  "patient_order_sha256": "6bab4857c501e612684d09ca0a29753f6c6079fca2fb7727c3babe584d95dc27",
+  "chunks_per_report": {
+    "count": 1018.0,
+    "mean": 2.54,
+    "std": 1.78,
+    "min": 1.0,
+    "25%": 1.0,
+    "50%": 2.0,
+    "75%": 4.0,
+    "max": 14.0
+  },
+  "tokens_per_report": {
+    "count": 1018.0,
+    "mean": 945.9,
+    "std": 806.1,
+    "min": 33.0,
+    "25%": 298.0,
+    "50%": 715.5,
+    "75%": 1431.8,
+    "max": 5996.0
+  },
+  "reports_needing_more_than_one_chunk": 623,
+  "seconds": 799.5,
+  "torch_threads": 6,
+  "embeddings_sha256": "555bcb8601cad82586da85858b0dccda301a98dbd0ca989d6f55b9951b9c70c8"
+}
