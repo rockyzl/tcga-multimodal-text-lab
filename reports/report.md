@@ -16,7 +16,7 @@ Under the decision rule fixed in `docs/protocol.md` before testing, this is repo
 **Text alone carries some prognostic signal, but less than four clinical variables.**
 - Text-only Cox, PFI: test C = 0.601 [0.499, 0.699]; development CV 0.601 ± 0.050.
 - Clinical-only Cox: test 0.736; development CV 0.682.
-- So the report embedding is not empty. In this design, though, what it captures appears to be already covered by age, stage and histology. Stage is itself abstracted from the same pathology reports.
+- So the report embedding is not empty. In this design, though, what it captures appears to be already covered by age, stage and histology. Pathologic stage is itself derived from pathology findings.
 
 **RNA also did not add on test.**
 - Clinical+RNA − clinical on test: −0.003 [−0.083, 0.074].
@@ -32,7 +32,7 @@ We do **not** read these as evidence that text helps:
 2. **The best text-including network still does not beat the simple baseline.** Clinical+RNA+text scored C = 0.725, which does not exceed the prespecified clinical-only Cox at 0.736. This is a descriptive comparison, not a prespecified one.
 3. **These are secondary contrasts among many** (6 feature sets × 2 families × 2 endpoints), with no multiplicity correction.
 
-This network failure is a real design weakness. A future version should use a minimum epoch count or a linear skip path. The network was **not** changed after seeing test results.
+This network weakness was already visible in development CV, where the network's clinical-only C was 0.614 against 0.682 for Cox (`results/dev_cv.json`, committed before the freeze). The prespecified network was kept rather than retuned on development results. Only after the test run was the mechanism diagnosed: early stopping restoring the epoch-0 weights. Per-run diagnostics were saved only for the test phase, so how often this happened during development is unknown. A future version should use a minimum epoch count or a linear skip path.
 
 **OS (secondary endpoint).** Neither interval excludes 0:
 - Cox clinical+text − clinical: +0.022 [−0.039, 0.084].
@@ -41,7 +41,7 @@ This network failure is a real design weakness. A future version should use a mi
 **Leakage sensitivity.** We removed the 41 test patients whose reports mention recurrence-score assays, recurrent or prior breast cancer, neoadjuvant or post-treatment change, death/autopsy, or relapse/progression. That leaves n=214 with 31 PFI events. The Cox text contrast becomes −0.004 [−0.078, 0.082], so the conclusion is unchanged.
 
 **Site confound.**
-- On the development set, logistic regression on the 16 text principal components identifies the tissue source site with **0.893 accuracy** (13 sites; majority baseline 0.173). The embeddings are dominated by formatting and institution signal. That is a plausible reason they add little prognostic information beyond clinical variables.
+- On the development set, logistic regression on the 16 text principal components identifies the tissue source site with **0.893 accuracy** (13 sites; majority baseline 0.173). The embeddings therefore strongly encode the tissue source site. A plausible, untested explanation for their small added value is that much of their variance reflects institution and formatting rather than pathology content.
 - A site-only Cox model ranks PFI at C = 0.471 ± 0.055 in development CV. Site alone is therefore not a strong shortcut here, so the text result is unlikely to be inflated by site.
 
 ## What this does and does not show

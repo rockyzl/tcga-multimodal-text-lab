@@ -1,0 +1,21 @@
+{
+  "embed": {
+    "wall_clock": "15:04.06",
+    "max_rss_kb_parent_process": 1578572,
+    "exit_status": 0,
+    "command": "uv run python -m src.text embed --threads 6"
+  },
+  "dev": {
+    "wall_clock": "12:34.77",
+    "max_rss_kb_parent_process": 691692,
+    "exit_status": 0,
+    "command": "uv run python -m src.run dev --workers 4"
+  },
+  "test": {
+    "wall_clock": "0:25.42",
+    "max_rss_kb_parent_process": 606156,
+    "exit_status": 0,
+    "command": "uv run python -m src.run test"
+  },
+  "note": "Parsed from GNU /usr/bin/time -v output (logs/*.log, gitignored). For dev, max RSS is the largest single process; 4 worker processes ran concurrently (see results/dev_cv.json peak_child_rss_mb). CPU only, no GPU."
+}

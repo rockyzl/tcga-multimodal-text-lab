@@ -42,7 +42,7 @@ flowchart LR
   M --> E[Harrell C + paired patient bootstrap<br/>one-shot held-out test]
 ```
 
-- **Text encoder:** `microsoft/BiomedNLP-BiomedBERT-base-uncased-abstract-fulltext` at a pinned revision, MIT license. The encoder is **frozen and not fine-tuned**. Long reports are tokenized into overlapping 512-token windows. Each window is mean-pooled with the attention mask, and the window vectors are averaged. The cached embeddings took 800 s on 6 CPU threads with about 1.5 GiB peak RSS.
+- **Text encoder:** `microsoft/BiomedNLP-BiomedBERT-base-uncased-abstract-fulltext` at a pinned revision, MIT license. The encoder is **frozen and not fine-tuned**. Long reports are tokenized into overlapping 512-token windows. Each window is mean-pooled with the attention mask, and the window vectors are averaged. Embedding all reports took about 15 minutes wall-clock on 6 CPU threads with about 1.5 GiB peak RSS (`results/compute.json`).
 - **Training-only preprocessing:** imputation, scaling, gene selection and PCA are refit inside every training fold and on the full development set. They never see evaluation rows, and a test checks this.
 - **Models:**
   - Primary: ridge-penalized Cox PH (lifelines, penalizer 0.1).
@@ -93,12 +93,12 @@ uv run python scripts/render_tables.py results/tables.md
 ## Limitations
 
 - **OCR text.** Reports were transcribed from scanned PDFs by OCR, and character errors remain. Some reports appear to be translated or non-US in style.
-- **Site and format confound.** Text embeddings mostly encode institution and formatting (tissue-source-site accuracy 0.89).
+- **Site and format confound.** Text embeddings strongly encode the tissue source site: 16 text principal components identify the site with 0.89 accuracy.
 - **Single cohort, retrospective, no external validation.** TCGA is not a consecutive clinical population, and follow-up is short for breast cancer.
 - **Small number of events.** 35 test events give wide CIs, and C-index differences of a few points cannot be resolved.
 - **Ranking only.** C-index says nothing about calibration or clinical benefit.
 - **Frozen, general-purpose encoder.** No fine-tuning, no section-aware or structured extraction. The PCA-16 compression may discard useful signal.
-- **Network weakness.** The fusion network's early stopping can keep untrained weights, as happened in the clinical-only reference. This was found after testing and was not fixed post hoc.
+- **Network weakness.** The network's clinical-only reference already underperformed Cox during development CV (C 0.614 vs 0.682). The prespecified network was kept rather than retuned on development results. Only after the test run was the mechanism diagnosed: early stopping can restore the untrained epoch-0 weights. Per-run network diagnostics were saved only for the test phase, so the epoch-0 rate during development is unknown.
 - **Not for clinical use.** This is a research prototype only.
 
 ## Repository map

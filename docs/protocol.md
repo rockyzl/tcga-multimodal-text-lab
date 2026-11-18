@@ -130,3 +130,5 @@ Policy:
 
 - **PFI rationale.** The brief said OS "has few events" in BRCA. In this cohort OS has slightly *more* events than PFI. PFI is kept as primary on the TCGA-CDR authors' actual stated reason, which is short follow-up (section 2).
 - **Additional `rna`-only ablation.** It was added for symmetry and is descriptive only.
+- **Computational-only change to `src/run.py`.** Fold-level process-pool parallelization and peak-RSS recording were added after the protocol commit (02fb4db) and before any development run (61f88a3). Methods are unchanged.
+- **Network diagnostics.** Per-run diagnostics (best epoch, stop epoch) were saved only in aggregate for the development phase, and per run for the test phase.
