@@ -42,7 +42,7 @@ flowchart LR
   M --> E[Harrell C + paired patient bootstrap<br/>one-shot held-out test]
 ```
 
-- **Text encoder:** `microsoft/BiomedNLP-BiomedBERT-base-uncased-abstract-fulltext` at a pinned revision, MIT license. The encoder is **frozen and not fine-tuned**. Long reports are tokenized into overlapping 512-token windows. Each window is mean-pooled with the attention mask, and the window vectors are averaged. The cached embeddings took 800 s on 6 CPU threads with 1.6 GB peak RSS.
+- **Text encoder:** `microsoft/BiomedNLP-BiomedBERT-base-uncased-abstract-fulltext` at a pinned revision, MIT license. The encoder is **frozen and not fine-tuned**. Long reports are tokenized into overlapping 512-token windows. Each window is mean-pooled with the attention mask, and the window vectors are averaged. The cached embeddings took 800 s on 6 CPU threads with about 1.5 GiB peak RSS.
 - **Training-only preprocessing:** imputation, scaling, gene selection and PCA are refit inside every training fold and on the full development set. They never see evaluation rows, and a test checks this.
 - **Models:**
   - Primary: ridge-penalized Cox PH (lifelines, penalizer 0.1).
