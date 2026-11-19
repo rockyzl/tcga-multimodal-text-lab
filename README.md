@@ -112,8 +112,6 @@ uv run python scripts/render_tables.py results/tables.md
 - `reports/report.md`: write-up.
 - `docs/protocol.md`: prespecified design.
 
-
-
 ## License and attribution
 
 Code: MIT (see `LICENSE`). Data and model attribution: see [`THIRD_PARTY.md`](THIRD_PARTY.md). Research and education only; not a clinical tool.
